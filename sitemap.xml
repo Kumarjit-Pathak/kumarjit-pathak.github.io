@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://kumarjit-pathak.github.io/Kumarjit%20Pathak%20Photo.jpg</image:loc>
+            <image:title>Kumarjit Pathak - AI &amp; Data Science Leader</image:title>
+        </image:image>
+    </url>
+
+    <!-- About Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#about</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Competencies Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#competencies</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Experience Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#experience</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Speaking Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#speaking</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Education Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#education</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Awards Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#awards</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Skills Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#skills</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Blog Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#blog</loc>
+        <lastmod>2025-10-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Projects Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#projects</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Contact Section -->
+    <url>
+        <loc>https://kumarjit-pathak.github.io/#contact</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>

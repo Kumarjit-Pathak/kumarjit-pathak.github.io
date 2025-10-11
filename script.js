@@ -63,44 +63,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Form submission handling
-const contactForm = document.querySelector('.contact-form form');
+// Enhanced Form submission handling with FormSpree
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const subject = contactForm.querySelector('input[placeholder="Subject"]').value;
-        const message = contactForm.querySelector('textarea').value;
-        
-        // Simple validation
-        if (!name || !email || !subject || !message) {
-            alert('Please fill in all fields.');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-        
-        // Simulate form submission
+
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
+
+        // Show loading state
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
-        
-        setTimeout(() => {
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            contactForm.reset();
+        formStatus.className = 'form-status';
+        formStatus.textContent = '';
+
+        try {
+            const formData = new FormData(contactForm);
+
+            // Note: Replace YOUR_FORM_ID with actual FormSpree form ID
+            // Or use mailto as fallback
+            const actionUrl = contactForm.getAttribute('action');
+
+            if (actionUrl.includes('YOUR_FORM_ID')) {
+                // Fallback to mailto if FormSpree not set up
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const subject = formData.get('subject');
+                const message = formData.get('message');
+
+                const mailtoLink = `mailto:Kumarjit.pathak.bangalore@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                window.location.href = mailtoLink;
+
+                formStatus.className = 'form-status success';
+                formStatus.textContent = 'Opening your email client...';
+                contactForm.reset();
+            } else {
+                // Use FormSpree if configured
+                const response = await fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formStatus.className = 'form-status success';
+                    formStatus.textContent = 'Thank you for your message! I\'ll get back to you soon.';
+                    contactForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            }
+        } catch (error) {
+            formStatus.className = 'form-status error';
+            formStatus.textContent = 'Oops! Something went wrong. Please try emailing directly.';
+        } finally {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
-        }, 2000);
+
+            // Hide status message after 5 seconds
+            setTimeout(() => {
+                formStatus.className = 'form-status';
+            }, 5000);
+        }
     });
 }
 
@@ -512,22 +541,22 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Experience Card Expand/Collapse Functionality
-document.querySelectorAll('.experience-card').forEach(card => {
-    const header = card.querySelector('.exp-header');
+// Timeline Item Expand/Collapse Functionality
+document.querySelectorAll('.timeline-item').forEach(item => {
+    const content = item.querySelector('.timeline-content');
 
-    header.addEventListener('click', function() {
-        const isExpanded = card.getAttribute('data-expanded') === 'true';
+    content.addEventListener('click', function() {
+        const isExpanded = item.getAttribute('data-expanded') === 'true';
 
-        // Close all other cards
-        document.querySelectorAll('.experience-card').forEach(otherCard => {
-            if (otherCard !== card) {
-                otherCard.setAttribute('data-expanded', 'false');
+        // Close all other timeline items
+        document.querySelectorAll('.timeline-item').forEach(otherItem => {
+            if (otherItem !== item) {
+                otherItem.setAttribute('data-expanded', 'false');
             }
         });
 
-        // Toggle current card
-        card.setAttribute('data-expanded', !isExpanded);
+        // Toggle current timeline item
+        item.setAttribute('data-expanded', !isExpanded);
     });
 });
 
@@ -597,4 +626,24 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && lightbox.classList.contains('show')) {
         closeLightbox();
     }
+});
+
+// Back to Top Button Functionality
+const backToTopButton = document.getElementById('backToTop');
+
+// Show/hide button based on scroll position
+window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+    } else {
+        backToTopButton.classList.remove('show');
+    }
+});
+
+// Scroll to top when button is clicked
+backToTopButton.addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
